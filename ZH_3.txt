@@ -1,0 +1,32 @@
+1. feladat:
+
+Filter: {  "imdb.rating": { "$gte": 5 }, "countries.0": "USA"}
+Project: {  "title": 1, "countries": 1, "imdb.rating": 1,}
+Sort: {"imdb.rating": -1}
+
+2.feladat:
+
+db.users.find(
+...   { "email": { "$regex": /\.com$/ } },
+...   { "name": 1, "email": 1, "_id": 0 }
+... )
+
+3.feladat: 
+
+db.movies.aggregate([ { $match: { "year": { $gt: 1950 } } }, { $group: { _id: "$rated", avgruntime: { $avg: "$runtime" } } }, { $project: { rated: "$_id", avgruntime: 1, _id: 0 } }] )
+
+4.feladat:
+
+MATCH (m:Movie)<-[:ACTED_IN]-(p:Person)
+WHERE m.released > 1970 OR m.title CONTAINS 'Love'
+RETURN m.title AS Cím, p.name AS Név
+ORDER BY Cím DESC
+
+5.feladat:
+
+MATCH (p:Person)-[:ACTED_IN]->(m:Movie)
+WHERE p.born > 1980
+RETURN p.name AS Actor, p.born AS BirthYear, COUNT(m.title) AS NumMoviesActedIn
+ORDER BY Actor
+
+
