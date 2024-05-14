@@ -1,0 +1,45 @@
+Logikai modell:
+
+Paciensek tábla:
+
+paciens_id: Egyedi azonosító
+nev: Beteg neve
+szuletesi_datum: Beteg születési dátuma
+cim: Beteg lakcíme
+telefon: Beteg telefonszáma
+
+
+Orvosok (Doctors) tábla:
+
+orvos_id: Egyedi azonosító
+nev: Orvos neve
+szakterulet: Orvos szakterülete
+
+
+Idopontok (Appointments) tábla:
+
+idopont_id: Egyedi azonosító
+orvos_id: Orvos azonosítója (kapcsolat az Orvosok táblához)
+paciens_id: Beteg azonosítója (kapcsolat a Paciensek táblához)
+idopont_datum: Az időpont dátuma
+ora: Az időpont órája
+indok: Az időpont foglalásának indoka
+
+
+Receptek (Prescriptions) tábla:
+
+recept_id: Egyedi azonosító
+orvos_id: Orvos azonosítója (kapcsolat az Orvosok táblához)
+paciens_id: Beteg azonosítója (kapcsolat a Paciensek táblához)
+recept_datum: A recept kiállításának dátuma
+gyogyszer: A felírt gyógyszer neve
+dozis: A felírt gyógyszer adagja
+
+
+Diagnózisok (Diagnoses) tábla:
+
+diagnozis_id: Egyedi azonosító
+orvos_id: Orvos azonosítója (kapcsolat az Orvosok táblához)
+paciens_id: Beteg azonosítója (kapcsolat a Paciensek táblához)
+diagnozis_datum: A diagnózis dátuma
+reszletek: A diagnózis részletei
