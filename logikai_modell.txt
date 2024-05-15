@@ -43,3 +43,43 @@ orvos_id: Orvos azonosítója (kapcsolat az Orvosok táblához)
 paciens_id: Beteg azonosítója (kapcsolat a Paciensek táblához)
 diagnozis_datum: A diagnózis dátuma
 reszletek: A diagnózis részletei
+
+
+Kapcsolatok
+
+Paciensek és Idopontok között: Egy páciens több időpontot is foglalhat, de egy időponthoz csak egy páciens tartozik. Ez egy 1:N (egy-több) kapcsolat.
+Idegen kulcs: Idopontok.paciens_id hivatkozik Paciensek.paciens_id-ra.
+
+Orvosok és Idopontok között: Egy orvos több időpontot is kezelhet, de egy időponthoz csak egy orvos tartozik. Ez egy 1:N (egy-több) kapcsolat.
+Idegen kulcs: Idopontok.orvos_id hivatkozik Orvosok.orvos_id-ra.
+
+Paciensek és Receptek között: Egy páciens több receptet is kaphat, de egy recept csak egy pácienshez tartozik. Ez egy 1:N (egy-több) kapcsolat.
+Idegen kulcs: Receptek.paciens_id hivatkozik Paciensek.paciens_id-ra.
+
+Orvosok és Receptek között: Egy orvos több receptet is kiállíthat, de egy receptet csak egy orvos állíthat ki. Ez egy 1:N (egy-több) kapcsolat.
+Idegen kulcs: Receptek.orvos_id hivatkozik Orvosok.orvos_id-ra.
+
+Paciensek és Diagnozisok között: Egy páciens több diagnózist is kaphat, de egy diagnózis csak egy pácienshez tartozik. Ez egy 1:N (egy-több) kapcsolat.
+Idegen kulcs: Diagnozisok.paciens_id hivatkozik Paciensek.paciens_id-ra.
+
+Orvosok és Diagnozisok között: Egy orvos több diagnózist is felállíthat, de egy diagnózist csak egy orvos állíthat fel. Ez egy 1:N (egy-több) kapcsolat.
+Idegen kulcs: Diagnozisok.orvos_id hivatkozik Orvosok.orvos_id-ra.
+
+Megszorítások
+
+Elsődleges kulcs (Primary Key): Minden tábla rendelkezik egy elsődleges kulccsal, ami biztosítja, hogy minden sor egyedi legyen.
+
+Paciensek.paciens_id
+Orvosok.orvos_id
+Idopontok.idopont_id
+Receptek.recept_id
+Diagnozisok.diagnozis_id
+
+Idegen kulcs (Foreign Key): Az idegen kulcsok biztosítják az adatintegritást a táblák közötti kapcsolatokban.
+
+Idopontok.paciens_id hivatkozik Paciensek.paciens_id-ra.
+Idopontok.orvos_id hivatkozik Orvosok.orvos_id-ra.
+Receptek.paciens_id hivatkozik Paciensek.paciens_id-ra.
+Receptek.orvos_id hivatkozik Orvosok.orvos_id-ra.
+Diagnozisok.paciens_id hivatkozik Paciensek.paciens_id-ra.
+Diagnozisok.orvos_id hivatkozik Orvosok.orvos_id-ra.
