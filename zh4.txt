@@ -1,0 +1,49 @@
+Cassandra CQL Shellben hozza létre a következő táblát:
+
+STUDENT(ID, Nev, Teljesitett_felevek, Eredmenyek, Nyelvtudas)
+
+Az ID legyen az elsődleges kulcs
+A Teljesitett félévek legyen LIST, tartalma egész számok, pl: 1, 2, 3
+Az Eredmenyek legyen MAP, tartalma, hogy melyik félévben mennyi volt az átlag, pl: 1: 3,00, 2: 4.55, 3: 4,10
+A Nyelvtudas legyen SET, tartalma a nyelvek megnevezése
+Vigyen fel legalább 2 rekordot!
+
+
+CREATE TABLE STUDENT (
+    ID int PRIMARY KEY,
+    Nev text,
+    Teljesitett_felevek list<int>,
+    Eredmenyek map<int, float>,
+    Nyelvtudas set<text>
+);
+
+INSERT INTO STUDENT (ID, Nev, Teljesitett_felevek, Eredmenyek, Nyelvtudas)
+VALUES (
+    1,
+    'Kovács Béla',
+    [1, 2, 3],
+    {1: 3.00, 2: 4.55, 3: 4.10},
+    {'magyar', 'angol', 'német'}
+);
+
+INSERT INTO STUDENT (ID, Nev, Teljesitett_felevek, Eredmenyek, Nyelvtudas)
+VALUES (
+    2,
+    'Kis Géza',
+    [1, 2],
+    {1: 4.20, 2: 4.80},
+    {'magyar', 'angol'}
+);
+
+
+
+
+A Neo4j Sandbox-ban vagy a Desktopban jelenítsük meg azon személyeket, akik egy filmben szerepeltek Tom Hanks-sel.
+
+Egy szereplő neve csak egyszer jelenjen meg
+Tom Hanks ne legyen benne a listában
+
+
+MATCH (tom:Person {name: "Tom Hanks"})-[:ACTED_IN]->(movie)<-[:ACTED_IN]-(coActor)
+WHERE NOT coActor.name = "Tom Hanks"
+RETURN DISTINCT coActor.name
